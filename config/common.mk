@@ -37,12 +37,12 @@ PRODUCT_PACKAGES += \
     GooManager \
     LatinIME \
     LockClock \
-    PerformanceControl \
-    XposedInstaller \
-    XposedNetflixWorkaround \
-    XposedPerAppSettings
+    PerformanceControl
 
 # tools
+PRODUCT_PACKAGES += \
+    CellBroadcastReceiver
+
 PRODUCT_PACKAGES += \
     armzipalign \
     e2fsck \
