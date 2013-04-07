@@ -29,6 +29,7 @@ QUIET=-q
 DELETE_BINS="applypatch applypatch_static check_prereq recovery updater"
 DELETE_LIBS="libc_malloc_debug_leak.so libc_malloc_debug_qemu.so"
 DELETE_FONTS="MTLmr3m.ttf"
+DELETE_APKS="LiveWallpapers.apk VoiceDialer.apk SpeechRecorder.apk VisualizationWallpapers.apk VideoEditor.apk Exchange2.apk HoloSpiralWallpaper.apk MagicSmokeWallpapers.apk NoiseField.apk Galaxy4.apk OpenWnn.apk PinyinIME.apk QuickSearchBox.apk Velvet.apk Provision.apk"
 DELETE_MEDIA="*.qmg"
 
 REPACK=$OUT/repack.d
@@ -80,6 +81,9 @@ OUTFILE=$OUT/$MODVERSION-$TARGET_PRODUCT_FINAL.zip
 # Delete unnecessary binaries
 ( cd $REPACK/ota/system/bin; echo $DELETE_BINS | xargs rm -f; )
 
+# Delete Home Apk
+( cd $REPACK/ota/system/app; echo $DELETE_APKS | xargs rm -f; )
+
 # Delete unnecessary libraries
 ( cd $REPACK/ota/system/lib; echo $DELETE_LIBS | xargs rm -f; )
 
@@ -118,7 +122,7 @@ printf "Zipping package..."
 echo
 printf "Signing package..."
 SECURITYDIR=$ANDROID_BUILD_TOP/build/target/product/security
-java -Xmx1024m \
+java -Xmx2048m \
 	-jar $OUT/../../../host/$OUT_TARGET_HOST/framework/signapk.jar \
 	-w $SECURITYDIR/testkey.x509.pem $SECURITYDIR/testkey.pk8 \
 	$REPACK/update.zip $OUTFILE
