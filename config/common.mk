@@ -78,10 +78,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     vendor/carbon/prebuilt/common/etc/init.carbon.rc:root/init.carbon.rc
 
-# initd
-PRODUCT_COPY_FILES += \
-    vendor/carbon/prebuilt/common/etc/init.d/98tweaks:system/etc/init.d/98tweaks
-
 # prebuilt
 PRODUCT_COPY_FILES += \
     vendor/carbon/prebuilt/common/xbin/sysro:system/xbin/sysro \
@@ -124,3 +120,5 @@ endif
 
 PRODUCT_PROPERTY_OVERRIDES += \
   ro.carbon.version=$(CARBON_VERSION)
+
+include vendor/carbon/config/mirage.mk
